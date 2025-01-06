@@ -251,10 +251,15 @@ export function _semverBump({
       path: projectRoot,
       tagPrefix,
       skipUnstable: skipUnstable ?? false,
+      // Not supported in type, but we need full history to be able to ensures that the complete history is shown, including commits that might be hidden by merge simplifications.
+      gitRawCommitsOpts: {
+        'full-history': true,
+        'no-merges': true,
+      },
       ...(typeof preset === 'string'
         ? { preset }
         : { preset: preset.name ?? 'conventionalcommits', config: preset }),
-    });
+    } as any);
 
     let recommendedReleaseType: ReleaseIdentifier | undefined =
       recommended.releaseType;
