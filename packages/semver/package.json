@@ -1,6 +1,6 @@
 {
   "name": "@invenco/semver",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Nx plugin for automate versioning and CHANGELOG generation.",
   "license": "MIT",
   "main": "src/index.js",

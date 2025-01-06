@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [2.1.0](https://github.com/jscutlery/semver/compare/semver-2.0.0...semver-2.1.0) (2025-01-06)
+
+
+### Bug Fixes
+
+* change package name ([1f718bf](https://github.com/jscutlery/semver/commit/1f718bfeffc0da41aead7b66297c0c3c24970adf))
+
+
+### Features
+
+* support full history to avoid merge simplifications ([0e2911a](https://github.com/jscutlery/semver/commit/0e2911ab3bb3a05c1e6ec42b3b7d5473d7c525bb))
+
+
+
 # [2.0.0](https://github.com/jscutlery/semver/compare/semver-1.0.0...semver-2.0.0) (2025-01-06)
 
 
