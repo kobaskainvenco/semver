@@ -2,6 +2,20 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+# [2.0.0](https://github.com/jscutlery/semver/compare/semver-1.0.0...semver-2.0.0) (2025-01-06)
+
+
+### Features
+
+* allow premajor for prereleases ([d6ca815](https://github.com/jscutlery/semver/commit/d6ca8157606875ca8e5aa85304332b1fd4a33c11))
+
+
+### BREAKING CHANGES
+
+* allows premajor for prereleases
+
+
+
 # 1.0.0 (2025-01-06)
 
 
