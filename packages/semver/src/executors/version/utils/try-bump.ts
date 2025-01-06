@@ -259,10 +259,7 @@ export function _semverBump({
     let recommendedReleaseType: ReleaseIdentifier | undefined =
       recommended.releaseType;
     if (recommendedReleaseType && releaseType === 'prerelease') {
-      recommendedReleaseType =
-        semver.parse(since)?.prerelease.length === 0
-          ? `pre${recommendedReleaseType}`
-          : releaseType;
+      recommendedReleaseType = `pre${recommendedReleaseType}`;
     }
 
     return recommendedReleaseType
