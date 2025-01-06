@@ -108,6 +108,10 @@
         "description": "Type to ignore"
       }
     },
+    "skipUnstable": {
+      "type": "boolean",
+      "description": "Boolean indicating whether or not to skip unstable versions when calculating the next version bump."
+    },
     "commitMessageFormat": {
       "description": "A string to be used to format the auto-generated release commit message.",
       "type": "string",

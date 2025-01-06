@@ -1,6 +1,6 @@
 import {
-  sync as parseConventionalCommitsSync,
   Options as CommitParserOptions,
+  sync as parseConventionalCommitsSync,
 } from 'conventional-commits-parser';
 import * as conventionalRecommendedBump from 'conventional-recommended-bump';
 import { defer, forkJoin, iif, of, type Observable } from 'rxjs';
@@ -104,6 +104,7 @@ export function tryBump({
   dependencyRoots = [],
   releaseType,
   preid,
+  skipUnstable,
   versionTagPrefix,
   syncVersions,
   allowEmptyRelease,
@@ -117,6 +118,7 @@ export function tryBump({
   dependencyRoots?: DependencyRoot[];
   releaseType?: ReleaseIdentifier;
   preid?: string;
+  skipUnstable?: boolean;
   versionTagPrefix?: string | null;
   syncVersions: boolean;
   allowEmptyRelease?: boolean;
@@ -158,6 +160,7 @@ export function tryBump({
         tagPrefix,
         releaseType,
         preid,
+        skipUnstable,
       }).pipe(map((version) => ({ type: 'project', version })));
 
       const dependencyVersions$ = _getDependencyVersions({
@@ -233,6 +236,7 @@ export function _semverBump({
   tagPrefix,
   releaseType,
   preid,
+  skipUnstable,
 }: {
   since: string;
   preset: PresetOpt;
@@ -240,11 +244,13 @@ export function _semverBump({
   tagPrefix: string;
   releaseType?: ReleaseIdentifier;
   preid?: string;
+  skipUnstable?: boolean;
 }) {
   return defer(async () => {
     const recommended = await conventionalRecommendedBump({
       path: projectRoot,
       tagPrefix,
+      skipUnstable: skipUnstable ?? false,
       ...(typeof preset === 'string'
         ? { preset }
         : { preset: preset.name ?? 'conventionalcommits', config: preset }),
@@ -314,6 +320,7 @@ export function _getDependencyVersions({
   skipCommitTypes,
   projectName,
   preid,
+  skipUnstable,
 }: {
   commitParserOptions?: CommitParserOptions;
   preset: PresetOpt;
@@ -325,6 +332,7 @@ export function _getDependencyVersions({
   syncVersions: boolean;
   projectName: string;
   preid?: string;
+  skipUnstable?: boolean;
 }): Observable<Version[]> {
   return forkJoin(
     dependencyRoots.map(({ path: projectRoot, name: dependencyName }) => {
@@ -368,6 +376,7 @@ export function _getDependencyVersions({
               preset,
               projectRoot,
               tagPrefix,
+              skipUnstable,
             }).pipe(
               map(
                 (version) =>
